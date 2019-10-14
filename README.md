@@ -28,8 +28,6 @@ Clone the repository, mount its directory as a volume into
             - ../docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
         environment:
             - POSTGRES_MULTIPLE_DATABASES=db1,db2
-            - POSTGRES_USER=myapp
-            - POSTGRES_PASSWORD=
 
 ### By building a custom image
 
@@ -46,8 +44,6 @@ to the container:
         image: eu.gcr.io/your-project/postgres-multi-db
         environment:
             - POSTGRES_MULTIPLE_DATABASES=db1,db2
-            - POSTGRES_USER=myapp
-            - POSTGRES_PASSWORD=
 
 ### Non-standard database names
 
@@ -55,3 +51,9 @@ If you need to use non-standard database names (hyphens, uppercase letters etc),
 
         environment:
             - POSTGRES_MULTIPLE_DATABASES="test-db-1","test-db-2"
+
+### Things should be noted
+
+- All DB's will be under master user, if not mentioned it will be `postgres`
+- You can not add `postgres` in the DB list, it's the default db. It will be create anyway.
+- All DB's password will be same, if not mentioned it will be blank
